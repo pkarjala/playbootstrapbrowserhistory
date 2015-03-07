@@ -24,7 +24,16 @@ public class IntegrationTest {
     running(testServer(3333, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
         browser.goTo("http://localhost:3333");
-        assertThat(browser.pageSource()).contains("history");
+        assertThat(browser.pageSource()).contains("Tim Berners-Lee");
+
+        browser.goTo("http://localhost:3333/internetexplorer");
+        assertThat(browser.pageSource()).contains("A Brief History of Internet Explorer");
+
+        browser.goTo("http://localhost:3333/firefox");
+        assertThat(browser.pageSource()).contains("A Brief History of Firefox");
+
+        browser.goTo("http://localhost:3333/chrome");
+        assertThat(browser.pageSource()).contains("A Brief History of Chrome");
       }
     });
   }
